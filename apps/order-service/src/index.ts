@@ -10,13 +10,13 @@ const fastify = Fastify();
 
 // fastify.register(Clerk.clerkPlugin);
 
-// fastify.get("/health", (request, reply) => {
-//   return reply.status(200).send({
-//     status: "ok",
-//     uptime: process.uptime(),
-//     timestamp: Date.now(),
-//   });
-// });
+fastify.get("/health", (request, reply) => {
+  return reply.status(200).send({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: Date.now(),
+  });
+});
 
 // fastify.get("/test", { preHandler: shouldBeUser }, (request, reply) => {
 //   return reply.send({

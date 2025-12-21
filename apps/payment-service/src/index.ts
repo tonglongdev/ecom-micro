@@ -14,13 +14,13 @@ const app = new Hono();
 app.get("/", (c) => {
   return c.text('Hello hono');
 });
-// app.get("/health", (c) => {
-//   return c.json({
-//     status: "ok",
-//     uptime: process.uptime(),
-//     timestamp: Date.now(),
-//   });
-// });
+app.get("/health", (c) => {
+  return c.json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: Date.now(),
+  });
+});
 
 // app.route("/sessions", sessionRoute);
 // app.route("/webhooks", webhookRoute);

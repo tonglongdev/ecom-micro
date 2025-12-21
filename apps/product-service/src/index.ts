@@ -19,13 +19,13 @@ app.listen(8000, () => {
 // app.use(express.json());
 // app.use(clerkMiddleware());
 
-// app.get("/health", (req: Request, res: Response) => {
-//   return res.status(200).json({
-//     status: "ok",
-//     uptime: process.uptime(),
-//     timestamp: Date.now(),
-//   });
-// });
+app.get("/health", (req: Request, res: Response) => {
+  return res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: Date.now(),
+  });
+});
 
 // app.get("/test", shouldBeUser, (req, res) => {
 //   res.json({ message: "Product service authenticated", userId: req.userId });
