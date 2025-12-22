@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
-// import { clerkMiddleware, getAuth } from "@clerk/express";
+import { clerkMiddleware, getAuth } from "@clerk/express";
+import { shouldBeUser } from "./middleware/authMiddleware";
 // import { shouldBeUser } from "./middleware/authMiddleware.js";
 // import productRouter from "./routes/product.route";
 // import categoryRouter from "./routes/category.route";
@@ -17,7 +18,7 @@ app.listen(8000, () => {
   console.log("Product service is running on 8000");
 });
 // app.use(express.json());
-// app.use(clerkMiddleware());
+app.use(clerkMiddleware());
 
 app.get("/health", (req: Request, res: Response) => {
   return res.status(200).json({
@@ -27,9 +28,9 @@ app.get("/health", (req: Request, res: Response) => {
   });
 });
 
-// app.get("/test", shouldBeUser, (req, res) => {
-//   res.json({ message: "Product service authenticated", userId: req.userId });
-// });
+app.get("/test", shouldBeUser, (req, res) => {
+  res.json({ message: "Product service authenticated", userId: req.userId });
+});
 
 // app.use("/products", productRouter);
 // app.use("/categories", categoryRouter);
