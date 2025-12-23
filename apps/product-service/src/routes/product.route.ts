@@ -9,12 +9,12 @@ import {
 import { shouldBeAdmin } from "../middleware/authMiddleware";
 
 const router: Router = Router();
-router.get("/test", (req, res) => {
-  res.json({ message: "Product route works!" });
-});
+
 router.post("/", createProduct);
-router.put("/:id", shouldBeAdmin, updateProduct);
-router.delete("/:id", shouldBeAdmin, deleteProduct);
+// router.put("/:id", shouldBeAdmin, updateProduct);
+router.put("/:id", updateProduct);
+// router.delete("/:id", shouldBeAdmin, deleteProduct);
+router.delete("/:id", deleteProduct);
 router.get("/", getProducts);
 router.get("/:id", getProduct);
 
