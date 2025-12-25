@@ -1,15 +1,13 @@
 import Fastify from "fastify";
-// import Clerk from "@clerk/fastify";
 import { clerkPlugin } from "@clerk/fastify";
 import { shouldBeUser } from "./middleware/authMiddleware.js";
-// import { connectOrderDB } from "@repo/order-db";
-// import { orderRoute } from "./routes/order.js";
+import { connectOrderDB } from "@repo/order-db";
+import { orderRoute } from "./routes/order.js";
 // import { consumer, producer } from "./utils/kafka.js";
 // import { runKafkaSubscriptions } from "./utils/subscriptions.js";
 
 const fastify = Fastify();
 
-// fastify.register(Clerk.clerkPlugin);
 fastify.register(clerkPlugin);
 
 fastify.get("/health", (request, reply) => {
@@ -27,10 +25,11 @@ fastify.get("/test", { preHandler: shouldBeUser }, (request, reply) => {
   });
 });
 
-// fastify.register(orderRoute);
+fastify.register(orderRoute);
 
 const start = async () => {
   try {
+      await connectOrderDB(),
     // Promise.all([
     //   await connectOrderDB(),
     //   await producer.connect(),
