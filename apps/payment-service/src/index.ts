@@ -5,7 +5,7 @@ import sessionRoute from "./routes/session.route.js";
 import { cors } from "hono/cors";
 // import { consumer, producer } from "./utils/kafka.js";
 // import { runKafkaSubscriptions } from "./utils/subscriptions.js";
-// import webhookRoute from "./routes/webhooks.route.js";
+import webhookRoute from "./routes/webhooks.route.js";
 
 const app = new Hono();
 app.use("*", clerkMiddleware());
@@ -20,7 +20,7 @@ app.get("/health", (c) => {
 });
 
 app.route("/sessions", sessionRoute);
-// app.route("/webhooks", webhookRoute);
+app.route("/webhooks", webhookRoute);
 
 const start = async () => {
   try {
