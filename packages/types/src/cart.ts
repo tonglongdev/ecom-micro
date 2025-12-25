@@ -1,8 +1,7 @@
-// import type { Product } from "@repo/product-db";
+import type { Product } from "@repo/product-db";
 import z from "zod";
 
-// export type CartItemType = Product & {
-export type CartItemType = {
+export type CartItemType = Product & {
   quantity: number;
   selectedSize: string;
   selectedColor: string;

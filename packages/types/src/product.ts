@@ -1,9 +1,9 @@
-// import type { Product, Category } from "@repo/product-db";
+import type { Product, Category } from "@repo/product-db";
 import z from "zod";
 
-// export type ProductType = Product;
+export type ProductType = Product;
 
-// export type ProductsType = ProductType[];
+export type ProductsType = ProductType[];
 
 export type StripeProductType = {
   id: string;
@@ -90,7 +90,7 @@ export const ProductFormSchema = z
     }
   );
 
-// export type CategoryType = Category;
+export type CategoryType = Category;
 
 export const CategoryFormSchema = z.object({
   name: z
