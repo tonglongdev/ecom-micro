@@ -1,11 +1,10 @@
-import express, { NextFunction, Request, Response } from "express";
+import { clerkMiddleware } from "@clerk/express";
 import cors from "cors";
-import { clerkMiddleware, getAuth } from "@clerk/express";
-import { shouldBeUser } from "./middleware/authMiddleware";
-// import { shouldBeUser } from "./middleware/authMiddleware.js";
-import productRouter from "./routes/product.route";
+import express, { NextFunction, Request, Response } from "express";
+import { shouldBeUser } from "./middleware/authMiddleware.js";
 import categoryRouter from "./routes/category.route";
-// import { consumer, producer } from "./utils/kafka.js";
+import productRouter from "./routes/product.route";
+import { consumer, producer } from "./utils/kafka.js";
 const app = express();
 app.use(
   cors({
@@ -13,10 +12,6 @@ app.use(
     credentials: true,
   })
 );
-
-app.listen(8000, () => {
-  console.log("Product service is running on 8000");
-});
 app.use(express.json());
 app.use(clerkMiddleware());
 
@@ -42,16 +37,16 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     .json({ message: err.message || "Inter Server Error!" });
 });
 
-// const start = async () => {
-//   try {
-//     Promise.all([await producer.connect(), await consumer.connect()]);
-//     app.listen(8000, () => {
-//       console.log("Product service is running on 8000");
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     process.exit(1);
-//   }
-// };
+const start = async () => {
+  try {
+    Promise.all([await producer.connect(), await consumer.connect()]);
+    app.listen(8000, () => {
+      console.log("Product service is running on 8000");
+    });
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
 
-// start();
+start();
