@@ -40,27 +40,29 @@ const OrdersPage = async () => {
             </div>
             <div className="w-1/12">
               <span className="font-medium text-sm text-gray-500">Total</span>
-              {/* <p>{order.amount / 100}</p> */}
+              <p>{order.amount / 100}</p>
             </div>
             <div className="w-1/12">
               <span className="font-medium text-sm text-gray-500">Status</span>
-              {/* <p>{order.status}</p> */}
+              <p>{order.status}</p>
             </div>
             <div className="w-1/8">
               <span className="font-medium text-sm text-gray-500">Date</span>
-              {/* <p>
+              <p>
                 {order.createdAt
                   ? new Date(order.createdAt).toLocaleDateString("en-US")
                   : "-"}
-              </p> */}
+              </p>
             </div>
             <div className="">
               <span className="font-medium text-sm text-gray-500">
                 Products
               </span>
-              {/* <p>{order.products?.map(product=> product.name).join(", ") || "-"}</p> */}
+              <p>
+                {order.products?.map((product) => product.name).join(", ") ||
+                  "-"}
+              </p>
             </div>
-            
           </li>
         ))}
       </ul>
